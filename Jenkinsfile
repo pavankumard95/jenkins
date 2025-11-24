@@ -22,7 +22,7 @@ pipeline{
         stage("Test") {
             steps{
                 script {
-                    echo "${params.}"
+                    echo "${params.BIOGRAPHY}"
                 }
             }
         }

@@ -1,16 +1,18 @@
 pipeline{
     agent any
+
     stages{
-        stage("Build"){
+        stage("Build") {
             steps{
                 sh 'sleep 5'
             }
         }
-        stage("Test"){
+        stage("Test") {
             steps{
                 sh 'sleep 5'
             }
-        }stage("Deploy"){
+        }
+        stage("Deploy") {
             steps{
                 sh 'sleep 5'
             }

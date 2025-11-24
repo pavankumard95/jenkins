@@ -3,13 +3,17 @@ pipeline{
 
     parameters{
         string(name: 'PARAM_STRING', defaultValue: 'random', description: 'This is a string parameter')
-        
+
     }
 
     stages{
         stage("Build") {
             steps{
-                sh 'sleep 5'
+                sh '''
+                set +x
+                sleep 5
+                echo $PARAM_STRING
+                '''
             }
         }
         stage("Test") {

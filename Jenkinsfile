@@ -13,6 +13,11 @@ pipeline{
     }
 
     stages{
+        stage('Checkout'){
+            steps{
+                git branch: 'main', credentialsId: 'f07ab0e7-3a48-4ae8-89a7-94d5d291b0d3', url: 'https://github.com/pavankumard95/jenkins.git' 
+            }
+        }
         stage("Build") {
             steps{
                 sh '''

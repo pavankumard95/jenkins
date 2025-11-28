@@ -21,16 +21,14 @@ pipeline{
         stage("Build") {
             steps{
                 sh '''
-                set +x
-                sleep 5
-                echo $PARAM_STRING
+                ls -lrt
                 '''
             }
         }
         stage("Test") {
             steps{
                 script {
-                    echo "${params.BIOGRAPHY}"
+                    echo "In Test stage"
                 }
             }
         }

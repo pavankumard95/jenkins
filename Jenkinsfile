@@ -51,7 +51,7 @@ pipeline{
                         echo 'Cleaning up build.'
                 }
             }
-        }
+        }}
         stage('Run Tests') {
             steps {
                 catchError(buildResult: ${PARAM_STRING}, stageResult: 'FAILURE') {

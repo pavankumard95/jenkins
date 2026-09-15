@@ -3,7 +3,7 @@ pipeline{
     agent any
 
     parameters{
-           string(name: 'PARAM_STRING', defaultValue: 'random', description: 'This is a string parameter')
+           string(name: 'PARAM_STRING', defaultValue: 'SUCCESS', description: 'This is a string parameter')
     //     text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
     //     booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
     //     choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
@@ -54,7 +54,7 @@ pipeline{
         }
         stage('Run Tests') {
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                catchError(buildResult: ${PARAM_STRING}, stageResult: 'FAILURE') {
                     sh 'exit 1'
                 }
             }

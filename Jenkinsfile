@@ -1,13 +1,14 @@
+def stageStatus = 'Failed'
 pipeline{
     agent any
 
-    // parameters{
+    parameters{
     //     string(name: 'PARAM_STRING', defaultValue: 'random', description: 'This is a string parameter')
     //     text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
     //     booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
     //     choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
     //     password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
-    // }
+    }
     // triggers{
     //     cron('*/59 * * * *')
     // }
@@ -29,6 +30,8 @@ pipeline{
             steps{
                 script {
                     echo "In Test stage"
+                    stageStatus = 'Success'
+                    echo "Status:${stageStatus}"
                 }
             }
         }

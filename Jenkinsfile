@@ -38,7 +38,7 @@ pipeline{
             steps{
                 script {
                     echo "In Test stage"
-                    stageStatus = 'Success'
+                    //stageStatus = 'Success'
                     echo "Status:${stageStatus}"
                 }
             }
@@ -46,6 +46,7 @@ pipeline{
         stage("Deploy") {
             steps{
                 sh 'sleep 5'
+                echo "Displaying string value:${PARAM_STRING}"
             }
         }
     }

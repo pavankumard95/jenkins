@@ -37,9 +37,25 @@ pipeline{
             }
             steps{
                 script {
-                    echo "In Test stage"
-                    //stageStatus = 'Success'
-                    echo "Status:${stageStatus}"
+                    try{
+                        sh 'exit 1'
+                        echo "In Test stage"
+                        stageStatus = 'Failed'
+                        echo "Stage status:${stageStatus}"
+                    }
+                    catch (Exception e) {
+                        echo "Tests failed with error: ${e.getMessage()}"
+                        currentBuild.result = 'UNSTABLE'
+                        
+                    } finally {
+                        echo 'Cleaning up build.'
+                }
+            }
+        }
+        stage('Run Tests') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh 'exit 1'
                 }
             }
         }

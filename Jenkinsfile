@@ -54,7 +54,7 @@ pipeline{
         }}
         stage('Run Tests') {
             steps {
-                catchError(buildResult: "${PARAM_STRING}", stageResult: 'FAILURE') {
+                catchError(buildResult: 'SUCCESSS', stageResult: 'FAILURE') {
                     sh 'exit 1'
                 }
             }

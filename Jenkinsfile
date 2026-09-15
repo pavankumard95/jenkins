@@ -54,7 +54,7 @@ pipeline{
         }}
         stage('Run Tests') {
             steps {
-                catchError(buildResult: 'SUCCESSS', stageResult: 'FAILURE') {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     sh 'exit 1'
                 }
             }

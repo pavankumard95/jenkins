@@ -24,9 +24,15 @@ pipeline{
                 sh '''
                 ls -lrt
                 '''
+                stageStatus == 'Success'
             }
         }
         stage("Test") {
+            when {
+                expression{
+                    stageStatus == 'Success'
+                }
+            }
             steps{
                 script {
                     echo "In Test stage"

@@ -24,7 +24,9 @@ pipeline{
                 sh '''
                 ls -lrt
                 '''
-                stageStatus == 'Success'
+                script{
+                stageStatus = 'Success'
+                }
             }
         }
         stage("Test") {

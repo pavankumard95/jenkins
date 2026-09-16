@@ -59,7 +59,7 @@ pipeline{
                     sh 'exit 0'
                 }
             }
-        }
+        } 
         stage("Deploy") {
             steps{
                 sh 'sleep 5'

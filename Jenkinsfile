@@ -52,7 +52,7 @@ pipeline{
                         echo 'Cleaning up build.'
                 }*/
             }
-        }}
+        }
         stage('Run Tests') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
@@ -67,4 +67,4 @@ pipeline{
             }
         }
     }
-
+}

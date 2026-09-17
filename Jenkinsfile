@@ -29,6 +29,7 @@ pipeline{
                 }
             }
         }
+        stage('Parallel Testing'){
         parallel{
             stage("Test") {
                 when {
@@ -61,7 +62,7 @@ pipeline{
                     }
                 }
             }
-        }
+        }}
         stage("Deploy") {
             steps{
                 sh 'sleep 5'

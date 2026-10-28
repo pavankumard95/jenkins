@@ -1,0 +1,11 @@
+pipeline{
+    agent any 
+
+    stages{
+        stage('Validate'){
+            steps{
+                echo "Working well mvn"
+            }
+        }
+    }
+}

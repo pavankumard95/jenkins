@@ -9,8 +9,39 @@ pipeline{
         }
         stage('Validate'){
             steps{
-                echo "Working well mvn"
+                sh "mvn validate"
+            }
+        }
+        stage('Compile'){
+            steps{
+                sh "mvn compile"
+            }
+        }
+        stage('Test'){
+            steps{
+                sh "mvn test"
+            }
+        }
+        stage('Package'){
+            steps{
+                sh "mvn package"
+            }
+        }
+        stage('Intergration test'){
+            steps{
+                sh "mvn test"
+            }
+        }
+        stage('Install'){
+            steps{
+                sh "mvn clean install"
+            }
+        }
+        stage('Deploy'){
+            steps{
+                sh "mvn deploy"
             }
         }
     }
 }
+

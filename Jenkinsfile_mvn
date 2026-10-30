@@ -34,11 +34,11 @@ pipeline{
         }
         stage('Deploy'){
             steps{
-                withCredentials{[usernamePassword{
+                withCredentials([usernamePassword(
                     credentialsId: 'tomcat-manager',
                     usernameVariable: 'TOMCAT_USERNAME',
                     passwordVariable: 'TOMCAT_PASSWORD'
-                }]}{
+                )]){
                 sh'''
                     set +x
                     mvn -B cargo:redeploy -DskipTests

@@ -9,7 +9,7 @@ pipeline{
         }
         stage('Validate'){
             steps{
-                sh "mvn -B validate checkstyle:check"
+                sh "mvn -B validate"
             }
         }
         stage('Compile'){

@@ -9,37 +9,42 @@ pipeline{
         }
         stage('Validate'){
             steps{
-                sh "mvn validate"
+                sh "mvn -B validate checkstyle:check"
             }
         }
         stage('Compile'){
             steps{
-                sh "mvn compile"
+                sh "mvn -B clean compile"
             }
         }
-        stage('Test'){
+        stage('Unit test'){
             steps{
-                sh "mvn test"
+                sh "mvn -B test"
             }
         }
         stage('Package'){
             steps{
-                sh "mvn package"
+                sh "mvn -B package -DskipTests"
             }
         }
         stage('Intergration test'){
             steps{
-                sh "mvn test"
-            }
-        }
-        stage('Install'){
-            steps{
-                sh "mvn clean install"
+                sh "mvn -B verify -DskipUTs"
             }
         }
         stage('Deploy'){
             steps{
-                sh "mvn deploy"
+                withCredentials{[usernamePassword{
+                    credentialsId: 'tomcat-manager',
+                    usernameVariable: 'TOMCAT_USERNAME',
+                    passwordVariable: 'TOMCAT_PASSWORD'
+                }]}{
+                sh'''
+                    set +x
+                    mvn -B cargo:redeploy -DskipTests
+                    curl http://localhost:8081/calculator/
+                    '''
+                }
             }
         }
     }
